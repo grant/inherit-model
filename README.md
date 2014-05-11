@@ -1,6 +1,6 @@
 # inherit-model
 
-A simple Backbone-inspired model wrapper for the `inherit` package
+A simple Backbone-inspired model wrapper for the npm `inherit` package
 
 ## Why?
 
@@ -13,9 +13,11 @@ A simple Backbone-inspired model wrapper for the `inherit` package
 ## Example
 
 ```coffee
+inherit = require 'inherit'
 Model = require 'inherit-model'
+
 User = inherit Model,
-  __constructor: (params) ->
+  __constructor: (params = {}) ->
     # Set the field names permanently
     @fields
       username: undefined
@@ -27,8 +29,10 @@ User = inherit Model,
 user = new User username: 'grant'
 user.set 'username', 'gdawg'
 
-console.log user.toJSON()
+console.log user.toJSON() # {username: 'gdawg', friendIds: []}
 ```
+
+See the [tests](/test/tests.coffee) for more exampless.
 
 ## Install
 
