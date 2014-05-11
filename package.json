@@ -1,0 +1,24 @@
+{
+  "name": "inherit-model",
+  "version": "0.0.1",
+  "description": "A simple Backbone-inspired model wrapper for the `inherit` package",
+  "main": "index.coffee",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/grant/inherit-model.git"
+  },
+  "keywords": [
+    "inherit",
+    "backbone",
+    "model"
+  ],
+  "author": "Grant Timmerman",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/grant/inherit-model/issues"
+  },
+  "homepage": "https://github.com/grant/inherit-model"
+}
