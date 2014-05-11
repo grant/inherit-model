@@ -6,12 +6,18 @@ A basic model
 Model = inherit
 
   # All of the attributes in this class
-  _attr: {}
+  _attr: undefined
 
   # Initializes class fields
   fields: (fields) ->
-    for name, value in fields
-      @_attr[name] = fields
+    @_attr ?= {}
+    for name, value of fields
+      @_attr[name] = value
+
+  # Default constructor
+  __constructor: (params) ->
+    @set params if params
+    return
 
   # Setter
   # Ex: model.set 'name', 'grant'
@@ -20,20 +26,25 @@ Model = inherit
     if arguments.length == 2
       name = arguments[0]
       value = arguments[1]
-      if @_attr[name]?
+      if name of @_attr
         @_attr[name] = value
       else
         throw Error "Attribute: '#{name}' not defined."
     else # Assume 1 argument
-      for name, value in arguments
+      fields = arguments[0]
+      for name, value of fields
         @set name, value
 
   # Getter
   # Ex: model.get 'name # 'grant'
   get: (name) ->
-    if @_attr[name]?
+    if name of @_attr
       @_attr[name]
     else
       throw Error "Attribute: '#{name}' not defined."
+
+  # Returns an object of all the class attributes
+  toJSON: ->
+    @_attr || {}
 
 module.exports = Model
