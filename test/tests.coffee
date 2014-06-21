@@ -110,6 +110,24 @@ describe 'model', ->
       user.get('username').should.equal 'grant'
       user.get('name').should.equal 'g'
 
+    it 'should accept object values', ->
+      User = inherit Model,
+        __constructor: (params) ->
+          @fields
+            username:
+              part1: 1
+              part2: 2
+            name: 'defaultName'
+          @__base params
+
+      user = new User
+      user.set
+        username: 'grant'
+        name: {}
+
+      user.get('username').should.equal 'grant'
+      objCompare user.get('name'), {}
+
     it 'should return false when resetting property same value', ->
       User = inherit Model,
         __constructor: (params) ->
@@ -122,6 +140,19 @@ describe 'model', ->
       changed = user.set
         username: 'defaultUsername'
       changed.should.be.false
+
+    it 'should return true when setting new property', ->
+      User = inherit Model,
+        __constructor: (params) ->
+          @fields
+            username: 'defaultUsername'
+            name: 'defaultName'
+          @__base params
+
+      user = new User
+      changed = user.set
+        username: 'new'
+      changed.should.be.true
 
   describe 'toJSON', ->
     it 'should work', ->
