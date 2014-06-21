@@ -30,7 +30,8 @@ Model = inherit
       if name of @_attr
         if typeof @_attr[name] == 'object'
           changed = JSON.stringify(@_attr[name]) != JSON.stringify(value)
-        changed = @_attr[name] != value
+        else
+          changed = @_attr[name] != value
         @_attr[name] = value
         changed
       else

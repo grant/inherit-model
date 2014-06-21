@@ -154,6 +154,33 @@ describe 'model', ->
         username: 'new'
       changed.should.be.true
 
+    it 'should return true for different object values', ->
+      User = inherit Model,
+        __constructor: (params) ->
+          @fields
+            username: {}
+            name: 'defaultName'
+          @__base params
+
+      user = new User
+      changed = user.set
+        username:
+          'hi': 3
+      changed.should.be.true
+
+    it 'should return false for same object values', ->
+      User = inherit Model,
+        __constructor: (params) ->
+          @fields
+            username: {}
+            name: 'defaultName'
+          @__base params
+
+      user = new User
+      changed = user.set
+        username: {}
+      changed.should.be.false
+
   describe 'toJSON', ->
     it 'should work', ->
       User = inherit Model,
