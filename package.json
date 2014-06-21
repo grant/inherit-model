@@ -1,6 +1,6 @@
 {
   "name": "inherit-model",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A simple Backbone-inspired model wrapper for the `inherit` package",
   "main": "index.coffee",
   "scripts": {
