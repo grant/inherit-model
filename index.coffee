@@ -45,7 +45,7 @@ Model = inherit
       changed
 
   # Getter
-  # Ex: model.get 'name # 'grant'
+  # Ex: model.get 'name' # 'grant'
   get: (name) ->
     if name of @_attr
       @_attr[name]
