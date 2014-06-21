@@ -32,7 +32,7 @@ user.set 'username', 'gdawg'
 console.log user.toJSON() # {username: 'gdawg', friendIds: []}
 ```
 
-See the [tests](/test/tests.coffee) for more exampless.
+See the [tests](test/tests.coffee) for more exampless.
 
 ## Install
 

@@ -22,18 +22,24 @@ Model = inherit
   # Setter
   # Ex: model.set 'name', 'grant'
   # Ex: model.set 'name': 'grant', 'twitter': 'granttimmerman'
+  # Returns true if one of the values changed
   set: ->
     if arguments.length == 2
       name = arguments[0]
       value = arguments[1]
       if name of @_attr
+        changed = @_attr[name] != value
         @_attr[name] = value
+        changed
       else
         throw Error "Attribute: '#{name}' not defined."
     else # Assume 1 argument
       fields = arguments[0]
+      changed = false
       for name, value of fields
-        @set name, value
+        newset = @set name, value
+        changed = changed || newset
+      changed
 
   # Getter
   # Ex: model.get 'name # 'grant'

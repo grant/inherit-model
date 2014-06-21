@@ -110,6 +110,19 @@ describe 'model', ->
       user.get('username').should.equal 'grant'
       user.get('name').should.equal 'g'
 
+    it 'should return false when resetting property same value', ->
+      User = inherit Model,
+        __constructor: (params) ->
+          @fields
+            username: 'defaultUsername'
+            name: 'defaultName'
+          @__base params
+
+      user = new User
+      changed = user.set
+        username: 'defaultUsername'
+      changed.should.be.false
+
   describe 'toJSON', ->
     it 'should work', ->
       User = inherit Model,
